@@ -284,14 +284,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6885790815091779776, guid: 8b022e1e20b3de0429fb1752a67f49a0, type: 3}
-      propertyPath: lookRoot
-      value: 
-      objectReference: {fileID: 7663374359974397332}
-    - target: {fileID: 6885790815091779776, guid: 8b022e1e20b3de0429fb1752a67f49a0, type: 3}
-      propertyPath: playerRoot
-      value: 
-      objectReference: {fileID: 6829801225418286417}
     - target: {fileID: 8231982850247853864, guid: 8b022e1e20b3de0429fb1752a67f49a0, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -338,13 +330,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b022e1e20b3de0429fb1752a67f49a0, type: 3}
---- !u!4 &6829801225418286417 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8231982850247853864, guid: 8b022e1e20b3de0429fb1752a67f49a0, type: 3}
-  m_PrefabInstance: {fileID: 3239694307136119417}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7663374359974397332 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5092571370544981997, guid: 8b022e1e20b3de0429fb1752a67f49a0, type: 3}
-  m_PrefabInstance: {fileID: 3239694307136119417}
-  m_PrefabAsset: {fileID: 0}
