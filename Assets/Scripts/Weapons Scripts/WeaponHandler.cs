@@ -83,7 +83,7 @@ public class WeaponHandler : MonoBehaviour
     {
         if(attack_Point.activeInHierarchy)
         {
-            attack_Point.SetActive(false);
+            attack_Point.SetActive(false); 
         }
     }
 }
