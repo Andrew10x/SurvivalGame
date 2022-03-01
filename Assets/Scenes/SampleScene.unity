@@ -590,8 +590,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walk_Speed: 0.5
   run_Speed: 4
-  chase_Distance: 7
-  attack_Distance: 1.8
+  chase_Distance: 20
+  attack_Distance: 2.2
   chase_After_Attack_Distance: 2
   patrol_Radius_Min: 20
   patrol_Radius_Max: 60
@@ -626,11 +626,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1910241556010097691, guid: f01c404b4d77aab4c8465285101825c8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 21.626
+      value: 24.645
       objectReference: {fileID: 0}
     - target: {fileID: 1910241556010097691, guid: f01c404b4d77aab4c8465285101825c8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 105
+      value: 143.1
       objectReference: {fileID: 0}
     - target: {fileID: 1910241556010097691, guid: f01c404b4d77aab4c8465285101825c8, type: 3}
       propertyPath: m_LocalRotation.w
