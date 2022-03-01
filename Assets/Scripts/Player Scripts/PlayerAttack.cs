@@ -18,6 +18,12 @@ public class PlayerAttack : MonoBehaviour
 
     private bool is_Aiming;
 
+    [SerializeField]
+    private GameObject arrow_Prefab, spear_Prefab;
+
+    [SerializeField]
+    private Transform arrow_Bow_Start_Position;
+
     void Awake()
     {
         weapon_Manager = GetComponent<WeaponManager>();
@@ -48,6 +54,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 nextTimeToFire = Time.time + 1f / fireRate;
                 weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
+                bulletFired();
             }
         }
         else
@@ -61,7 +68,7 @@ public class PlayerAttack : MonoBehaviour
                 else if(weapon_Manager.GetCurrentSelectedWeapon().bulletType == WeaponBulletType.BULLET)
                 {
                     weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
-                    //bulletFired();
+                    bulletFired();
                 }
                 else
                 {
@@ -71,12 +78,12 @@ public class PlayerAttack : MonoBehaviour
                         if(weapon_Manager.GetCurrentSelectedWeapon().bulletType
                             == WeaponBulletType.ARROW)
                         {
-
+                            ThrowArrowOrSpear(true);
                         }
                         else if(weapon_Manager.GetCurrentSelectedWeapon().bulletType
                             == WeaponBulletType.SPEAR)
                         {
-
+                            ThrowArrowOrSpear(false);
                         }
                     }
                 }
@@ -119,6 +126,35 @@ public class PlayerAttack : MonoBehaviour
 
                 is_Aiming = false;
             }
+        }
+    }
+
+    void ThrowArrowOrSpear(bool throwArrow)
+    {
+        if (throwArrow)
+        {
+            GameObject arrow = Instantiate(arrow_Prefab);
+
+            arrow.transform.position = arrow_Bow_Start_Position.position;
+
+            arrow.GetComponent<ArrowBowScript>().Launch(mainCam);
+        }
+        else
+        {
+            GameObject spear = Instantiate(spear_Prefab);
+
+            spear.transform.position = arrow_Bow_Start_Position.position;
+
+            spear.GetComponent<ArrowBowScript>().Launch(mainCam);
+        }
+    }
+
+    void bulletFired()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out hit))
+        {
+            print(hit.transform.gameObject.name);
         }
     }
 }
