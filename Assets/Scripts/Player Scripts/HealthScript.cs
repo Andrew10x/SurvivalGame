@@ -92,7 +92,7 @@ public class HealthScript : MonoBehaviour
                 enemies[i].GetComponent<EnemyController>().enabled = false;
             }
 
-            GetComponent<PlayerMovement>().enabled = false;
+            //GetComponent<PlayerMovement>().enabled = false;
             GetComponent<PlayerAttack>().enabled = false;
             GetComponent<WeaponManager>().GetCurrentSelectedWeapon().gameObject.SetActive(false);
         }
