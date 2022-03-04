@@ -15,17 +15,7 @@ public class PlayerStats : MonoBehaviour {
         health_Stats.fillAmount = healthValue;
 
     }
-
-    public void Display_StaminaStats(float staminaValue) {
-
-        staminaValue /= 100f;
-
-        stamina_Stats.fillAmount = staminaValue;
-
-    }
-
-
-} // class
+}
 
 
 
