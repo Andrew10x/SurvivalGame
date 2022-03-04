@@ -34,14 +34,6 @@ public class WeaponManager : MonoBehaviour {
             TurnOnSelectedWeapon(3);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha5)) {
-            TurnOnSelectedWeapon(4);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha6)) {
-            TurnOnSelectedWeapon(5);
-        }
-
     } // update
 
     void TurnOnSelectedWeapon(int weaponIndex) {
