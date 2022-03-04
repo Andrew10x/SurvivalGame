@@ -1,38 +1,36 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum WeaponAim
-{
+public enum WeaponAim {
     NONE,
     SELF_AIM,
     AIM
 }
 
-public enum WeaponFireType
-{
+public enum WeaponFireType {
     SINGLE,
     MULTIPLE
 }
 
-public enum WeaponBulletType
-{
+public enum WeaponBulletType {
     BULLET,
     ARROW,
     SPEAR,
     NONE
 }
 
-public class WeaponHandler : MonoBehaviour
-{
+public class WeaponHandler : MonoBehaviour {
+
     private Animator anim;
 
     public WeaponAim weapon_Aim;
 
     [SerializeField]
     private GameObject muzzleFlash;
+
     [SerializeField]
-    private AudioSource shoot_Sound, reload_Sound;
+    private AudioSource shootSound, reload_Sound;
 
     public WeaponFireType fireType;
 
@@ -40,50 +38,79 @@ public class WeaponHandler : MonoBehaviour
 
     public GameObject attack_Point;
 
-    void Awake()
-    {
+    void Awake() {
         anim = GetComponent<Animator>();
     }
-    public void ShootAnimation()
-    {
-        anim.SetTrigger(AnimationTags.SHOOT_TRIGER);
+
+    public void ShootAnimation() {
+        anim.SetTrigger(AnimationTags.SHOOT_TRIGGER);
     }
 
-    public void Aim(bool canAim)
-    {
+    public void Aim(bool canAim) {
         anim.SetBool(AnimationTags.AIM_PARAMETER, canAim);
     }
 
-    void Turn_On_Muzzle_Flash()
-    {
+    void Turn_On_MuzzleFlash() {
         muzzleFlash.SetActive(true);
     }
 
-    void Turn_Off_Muzzle_Flash()
-    {
+    void Turn_Off_MuzzleFlash() {
         muzzleFlash.SetActive(false);
     }
 
-    void Play_ShootSound()
-    {
-        shoot_Sound.Play();
+    void Play_ShootSound() {
+        shootSound.Play();
     }
 
-    void Play_ReloadSound()
-    {
+    void Play_ReloadSound() {
         reload_Sound.Play();
     }
 
-    void Turn_On_AttackPoint()
-    {
+    void Turn_On_AttackPoint() {
         attack_Point.SetActive(true);
     }
 
-    void Turn_Off_AttackPoint()
-    {
-        if(attack_Point.activeInHierarchy)
-        {
-            attack_Point.SetActive(false); 
+    void Turn_Off_AttackPoint() {
+        if(attack_Point.activeInHierarchy) {
+            attack_Point.SetActive(false);
         }
     }
-}
+
+} // class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
