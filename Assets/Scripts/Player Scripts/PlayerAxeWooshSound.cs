@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class PlayerAxeWooshSound : MonoBehaviour {
@@ -16,4 +15,4 @@ public class PlayerAxeWooshSound : MonoBehaviour {
     }
 
 	
-} // class
+}

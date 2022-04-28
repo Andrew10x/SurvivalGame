@@ -10,6 +10,9 @@ TagManager:
   - FP Camera
   - Arrow
   - Enemy
+  - Revolver
+  - Shotgun
+  - AsRiffle
   layers:
   - Default
   - TransparentFX

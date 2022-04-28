@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour {
@@ -8,6 +7,9 @@ public class EnemyManager : MonoBehaviour {
 
     [SerializeField]
     private GameObject boar_Prefab, cannibal_Prefab;
+
+    [SerializeField]
+    private GameObject player;
 
     public Transform[] cannibal_SpawnPoints, boar_SpawnPoints;
 
@@ -18,7 +20,7 @@ public class EnemyManager : MonoBehaviour {
 
     public float wait_Before_Spawn_Enemies_Time = 10f;
 
-    // Use this for initialization
+
     void Awake () {
         MakeInstance();
 	}
@@ -54,9 +56,7 @@ public class EnemyManager : MonoBehaviour {
             }
 
             Instantiate(cannibal_Prefab, cannibal_SpawnPoints[index].position, Quaternion.identity);
-
             index++;
-
         }
 
         cannibal_Enemy_Count = 0;
@@ -68,15 +68,15 @@ public class EnemyManager : MonoBehaviour {
         int index = 0;
 
         for (int i = 0; i < boar_Enemy_Count; i++) {
-
+           
             if (index >= boar_SpawnPoints.Length)
             {
                 index = 0;
             }
 
             Instantiate(boar_Prefab, boar_SpawnPoints[index].position, Quaternion.identity);
-
             index++;
+           
 
         }
 
@@ -96,8 +96,8 @@ public class EnemyManager : MonoBehaviour {
     }
 
     public void EnemyDied(bool cannibal) {
-
-        if(cannibal) {
+        player.GetComponent<PlayerAttack>().incSt();
+        if (cannibal) {
 
             cannibal_Enemy_Count++;
 
@@ -121,7 +121,7 @@ public class EnemyManager : MonoBehaviour {
         StopCoroutine("CheckToSpawnEnemies");
     }
 
-} // class
+}
 
 
 

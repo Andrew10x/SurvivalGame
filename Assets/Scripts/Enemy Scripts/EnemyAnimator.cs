@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class EnemyAnimator : MonoBehaviour {
@@ -26,7 +25,7 @@ public class EnemyAnimator : MonoBehaviour {
         anim.SetTrigger(AnimationTags.DEAD_TRIGGER);
     }
 
-} // class
+}
 
 
 

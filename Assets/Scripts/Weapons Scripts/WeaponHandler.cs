@@ -1,12 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-
-public enum WeaponAim {
-    NONE,
-    SELF_AIM,
-    AIM
-}
 
 public enum WeaponFireType {
     SINGLE,
@@ -15,9 +8,14 @@ public enum WeaponFireType {
 
 public enum WeaponBulletType {
     BULLET,
-    ARROW,
-    SPEAR,
     NONE
+}
+
+public enum WeaponAim
+{
+    NONE,
+    SELF_AIM,
+    AIM
 }
 
 public class WeaponHandler : MonoBehaviour {
@@ -76,7 +74,7 @@ public class WeaponHandler : MonoBehaviour {
         }
     }
 
-} // class
+}
 
 
 

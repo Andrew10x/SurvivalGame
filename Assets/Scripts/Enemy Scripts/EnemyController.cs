@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,7 +8,8 @@ public enum EnemyState {
     ATTACK
 }
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : MonoBehaviour
+{
 
     private EnemyAnimator enemy_Anim;
     private NavMeshAgent navAgent;
@@ -37,7 +37,8 @@ public class EnemyController : MonoBehaviour {
 
     private EnemyAudio enemy_Audio;
 
-    void Awake() {
+    void Awake()
+    {
         enemy_Anim = GetComponent<EnemyAnimator>();
         navAgent = GetComponent<NavMeshAgent>();
 
@@ -47,8 +48,8 @@ public class EnemyController : MonoBehaviour {
 
     }
 
-    // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
         enemy_State = EnemyState.PATROL;
 
@@ -62,26 +63,30 @@ public class EnemyController : MonoBehaviour {
         // so that we can put it back
         current_Chase_Distance = chase_Distance;
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-        if(enemy_State == EnemyState.PATROL) {
+    }
+
+    void Update()
+    {
+
+        if (enemy_State == EnemyState.PATROL)
+        {
             Patrol();
         }
 
-        if(enemy_State == EnemyState.CHASE) {
+        if (enemy_State == EnemyState.CHASE)
+        {
             Chase();
         }
 
-        if (enemy_State == EnemyState.ATTACK) {
+        if (enemy_State == EnemyState.ATTACK)
+        {
             Attack();
         }
 
     }
 
-    void Patrol() {
+    void Patrol()
+    {
 
         // tell nav agent that he can move
         navAgent.isStopped = false;
@@ -90,7 +95,8 @@ public class EnemyController : MonoBehaviour {
         // add to the patrol timer
         patrol_Timer += Time.deltaTime;
 
-        if(patrol_Timer > patrol_For_This_Time) {
+        if (patrol_Timer > patrol_For_This_Time)
+        {
 
             SetNewRandomDestination();
 
@@ -98,32 +104,36 @@ public class EnemyController : MonoBehaviour {
 
         }
 
-        if(navAgent.velocity.sqrMagnitude > 0) {
-        
+        if (navAgent.velocity.sqrMagnitude > 0)
+        {
+
             enemy_Anim.Walk(true);
-        
-        } else {
+
+        }
+        else
+        {
 
             enemy_Anim.Walk(false);
 
         }
 
         // test the distance between the player and the enemy
-        if(Vector3.Distance(transform.position, target.position) <= chase_Distance) {
+        if (Vector3.Distance(transform.position, target.position) <= chase_Distance)
+        {
 
             enemy_Anim.Walk(false);
 
             enemy_State = EnemyState.CHASE;
 
-            // play spotted audio
             enemy_Audio.Play_ScreamSound();
 
         }
 
 
-    } // patrol
+    }
 
-    void Chase() {
+    void Chase()
+    {
 
         // enable the agent to move again
         navAgent.isStopped = false;
@@ -133,18 +143,22 @@ public class EnemyController : MonoBehaviour {
         // because we are chasing(running towards) the player
         navAgent.SetDestination(target.position);
 
-        if (navAgent.velocity.sqrMagnitude > 0) {
+        if (navAgent.velocity.sqrMagnitude > 0)
+        {
 
             enemy_Anim.Run(true);
 
-        } else {
+        }
+        else
+        {
 
             enemy_Anim.Run(false);
 
         }
 
         // if the distance between enemy and player is less than attack distance
-        if(Vector3.Distance(transform.position, target.position) <= attack_Distance) {
+        if (Vector3.Distance(transform.position, target.position) <= attack_Distance)
+        {
 
             // stop the animations
             enemy_Anim.Run(false);
@@ -152,11 +166,14 @@ public class EnemyController : MonoBehaviour {
             enemy_State = EnemyState.ATTACK;
 
             // reset the chase distance to previous
-            if(chase_Distance != current_Chase_Distance) {
+            if (chase_Distance != current_Chase_Distance)
+            {
                 chase_Distance = current_Chase_Distance;
             }
 
-        } else if(Vector3.Distance(transform.position, target.position) > chase_Distance) {
+        }
+        else if (Vector3.Distance(transform.position, target.position) > chase_Distance)
+        {
             // player run away from enemy
 
             // stop running
@@ -169,23 +186,26 @@ public class EnemyController : MonoBehaviour {
             patrol_Timer = patrol_For_This_Time;
 
             // reset the chase distance to previous
-            if (chase_Distance != current_Chase_Distance) {
+            if (chase_Distance != current_Chase_Distance)
+            {
                 chase_Distance = current_Chase_Distance;
             }
 
 
-        } // else
+        }
 
-    } // chase
+    }
 
-    void Attack() {
+    void Attack()
+    {
 
         navAgent.velocity = Vector3.zero;
         navAgent.isStopped = true;
 
         attack_Timer += Time.deltaTime;
 
-        if(attack_Timer > wait_Before_Attack) {
+        if (attack_Timer > wait_Before_Attack)
+        {
 
             enemy_Anim.Attack();
 
@@ -196,17 +216,19 @@ public class EnemyController : MonoBehaviour {
 
         }
 
-        if(Vector3.Distance(transform.position, target.position) >
-           attack_Distance + chase_After_Attack_Distance) {
+        if (Vector3.Distance(transform.position, target.position) >
+           attack_Distance + chase_After_Attack_Distance)
+        {
 
             enemy_State = EnemyState.CHASE;
 
         }
 
 
-    } // attack
+    }
 
-    void SetNewRandomDestination() {
+    void SetNewRandomDestination()
+    {
 
         float rand_Radius = Random.Range(patrol_Radius_Min, patrol_Radius_Max);
 
@@ -221,37 +243,25 @@ public class EnemyController : MonoBehaviour {
 
     }
 
-    void Turn_On_AttackPoint() {
+    void Turn_On_AttackPoint()
+    {
         attack_Point.SetActive(true);
     }
 
-    void Turn_Off_AttackPoint() {
-        if (attack_Point.activeInHierarchy) {
+    void Turn_Off_AttackPoint()
+    {
+        if (attack_Point.activeInHierarchy)
+        {
             attack_Point.SetActive(false);
         }
     }
 
-    public EnemyState Enemy_State {
+    public EnemyState Enemy_State
+    {
         get; set;
     }
 
-} // class
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
 
 
 

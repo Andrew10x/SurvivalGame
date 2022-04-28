@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class PlayerSprintAndCrouch : MonoBehaviour {
@@ -26,11 +25,6 @@ public class PlayerSprintAndCrouch : MonoBehaviour {
     private float sprint_Step_Distance = 0.25f;
     private float crouch_Step_Distance = 0.5f;
 
-    private PlayerStats player_Stats;
-
-    private float sprint_Value = 100f;
-    public float sprint_Treshold = 10f;
-
 	void Awake () {
 
         playerMovement = GetComponent<PlayerMovement>();
@@ -38,8 +32,6 @@ public class PlayerSprintAndCrouch : MonoBehaviour {
         look_Root = transform.GetChild(0);
 
         player_Footsteps = GetComponentInChildren<PlayerFootsteps>();
-
-        player_Stats = GetComponent<PlayerStats>();
 
 	}
     void Start() {
@@ -55,9 +47,6 @@ public class PlayerSprintAndCrouch : MonoBehaviour {
 
     void Sprint() {
 
-        
-        if(sprint_Value > 0f) {
-
             if (Input.GetKeyDown(KeyCode.LeftShift) && !is_Crouching) {
 
                 playerMovement.speed = sprint_Speed;
@@ -68,8 +57,6 @@ public class PlayerSprintAndCrouch : MonoBehaviour {
 
             }
 
-        }
-
         if(Input.GetKeyUp(KeyCode.LeftShift) && !is_Crouching) {
 
             playerMovement.speed = move_Speed;
@@ -79,41 +66,6 @@ public class PlayerSprintAndCrouch : MonoBehaviour {
             player_Footsteps.volume_Max = walk_Volume_Max;
 
         }
-
-        if(Input.GetKey(KeyCode.LeftShift) && !is_Crouching) {
-
-            sprint_Value -= sprint_Treshold * Time.deltaTime;
-
-            if(sprint_Value <= 0f) {
-
-                sprint_Value = 0f;
-
-               
-                playerMovement.speed = move_Speed;
-                player_Footsteps.step_Distance = walk_Step_Distance;
-                player_Footsteps.volume_Min = walk_Volume_Min;
-                player_Footsteps.volume_Max = walk_Volume_Max;
-
-
-            }
-
-
-        } else {
-
-            if(sprint_Value != 100f) {
-
-                sprint_Value += (sprint_Treshold / 2f) * Time.deltaTime;
-
-
-                if(sprint_Value > 100f) {
-                    sprint_Value = 100f;
-                }
-
-            }
-
-        }
-
-
     } 
 
     void Crouch() {

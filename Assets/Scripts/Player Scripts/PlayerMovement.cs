@@ -1,24 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    private CharacterController character_Controller;
-
+    private State state;
     private Vector3 move_Direction;
 
     public float speed = 5f;
     private float gravity = 20f;
+    public static CharacterController character_Controller;
 
     public float jump_Force = 10f;
-    private float vertical_Velocity;
+    public static float vertical_Velocity;
 
     void Awake() {
         character_Controller = GetComponent<CharacterController>();
     }
-	
-	void Update () {
+
+    void Update () {
         MoveThePlayer();
 	}
 
@@ -35,28 +34,45 @@ public class PlayerMovement : MonoBehaviour {
         character_Controller.Move(move_Direction);
 
 
-    } // move player
+    }
 
     void ApplyGravity() {
 
         vertical_Velocity -= gravity * Time.deltaTime;
 
-        // jump
-        PlayerJump();
+        state = new Jump(jump_Force, vertical_Velocity);
+        state.doWork();
 
         move_Direction.y = vertical_Velocity * Time.deltaTime;
 
-    } // apply gravity
+    }
 
-    void PlayerJump() {
+}
 
-        if(character_Controller.isGrounded && Input.GetKeyDown(KeyCode.Space)) {
+abstract class State
+{
+    public abstract void doWork();
+}
+class Jump: State
+{
+    private float jump_Force = 10f;
+    private float vertical_Velocity;
+    public Jump(float jump_Force, float vertical_Velocity)
+    {
+        this.jump_Force = jump_Force;
+        this.vertical_Velocity = vertical_Velocity;
+    }
+
+    public override void doWork()
+    {
+        if (PlayerMovement.character_Controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
+        {
             vertical_Velocity = jump_Force;
         }
 
+        PlayerMovement.vertical_Velocity = vertical_Velocity;
     }
-
-} // class
+}
 
 
 

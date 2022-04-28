@@ -481,6 +481,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1584958222739340, guid: 0018e13b46ab84a638da2961b5c3c295, type: 3}
+      propertyPath: m_TagString
+      value: Revolver
+      objectReference: {fileID: 0}
     - target: {fileID: 4331500397158274, guid: 0018e13b46ab84a638da2961b5c3c295, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -522,6 +526,11 @@ PrefabInstance:
         type: 3}
       propertyPath: stamina_Stats
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 114289509015557228, guid: 0018e13b46ab84a638da2961b5c3c295,
+        type: 3}
+      propertyPath: fireRate
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0018e13b46ab84a638da2961b5c3c295, type: 3}
