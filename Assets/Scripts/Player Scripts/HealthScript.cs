@@ -8,6 +8,8 @@ public class HealthScript : MonoBehaviour {
     private NavMeshAgent navAgent;
     private EnemyController enemy_Controller;
 
+    public GameObject player;
+
     public float health = 100f;
 
     public bool is_Player, is_Boar, is_Cannibal;
@@ -15,6 +17,8 @@ public class HealthScript : MonoBehaviour {
     private bool is_Dead;
 
     private EnemyAudio enemyAudio;
+
+    public int level;
 
     private PlayerStats player_Stats;
 
@@ -32,7 +36,6 @@ public class HealthScript : MonoBehaviour {
         if(is_Player) {
             player_Stats = GetComponent<PlayerStats>();
         }
-
 	}
 	
     public void ApplyDamage(float damage) {
@@ -125,9 +128,32 @@ public class HealthScript : MonoBehaviour {
     } // player died
 
     void RestartGame() {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        if (level == 1)
+            UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
+        else if (level == 2)
+            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
+    public void GoToMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag(Tags.ENEMY_TAG);
 
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                enemies[i].GetComponent<EnemyController>().enabled = false;
+            }
+            if(is_Player)
+            {
+                MouseLook ml = GetComponent<MouseLook>();
+                ml.showCursor();
+                ml.enabled = false;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+            }
+      
+        }
+
+    }
     void TurnOffGameObject() {
         gameObject.SetActive(false);
     }
@@ -135,6 +161,11 @@ public class HealthScript : MonoBehaviour {
     IEnumerator DeadSound() {
         yield return new WaitForSeconds(0.3f);
         enemyAudio.Play_DeadSound();
+    }
+
+    public void Update()
+    {
+        GoToMenu();
     }
 
 }

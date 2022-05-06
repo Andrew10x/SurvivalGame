@@ -36,12 +36,12 @@ public class MouseLook : MonoBehaviour {
 
     void LockAndUnlockCursor() {
 
-        if(Input.GetKeyDown(KeyCode.Escape)) {
+
+            if (Input.GetKeyDown(KeyCode.Escape)) {
 
             if(Cursor.lockState == CursorLockMode.Locked) {
 
                 Cursor.lockState = CursorLockMode.None;
-
 
             } else {
 
@@ -53,6 +53,16 @@ public class MouseLook : MonoBehaviour {
         }
 
     } // lock and unlock
+
+    public void showCursor()
+    {
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+
+            Cursor.lockState = CursorLockMode.None;
+
+        }
+    }
 
     void LookAround() {
 

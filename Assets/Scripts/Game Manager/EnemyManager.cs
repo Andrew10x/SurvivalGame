@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour {
 
+    public int score;
+    public Text scoreText;
     public static EnemyManager instance;
 
     [SerializeField]
@@ -26,6 +29,10 @@ public class EnemyManager : MonoBehaviour {
 	}
 
     void Start() {
+        if (!PlayerPrefs.HasKey("coinCount"))
+            PlayerPrefs.SetInt("coinCount", 0);
+        scoreText.text = PlayerPrefs.GetInt("coinCount").ToString();
+        score = PlayerPrefs.GetInt("coinCount");
         initial_Cannibal_Count = cannibal_Enemy_Count;
         initial_Boar_Count = boar_Enemy_Count;
 
@@ -99,6 +106,7 @@ public class EnemyManager : MonoBehaviour {
         player.GetComponent<PlayerAttack>().incSt();
         if (cannibal) {
 
+            addCoin(10);
             cannibal_Enemy_Count++;
 
             if(cannibal_Enemy_Count > initial_Cannibal_Count) {
@@ -106,7 +114,7 @@ public class EnemyManager : MonoBehaviour {
             }
 
         } else {
-
+            addCoin(5);
             boar_Enemy_Count++;
 
             if(boar_Enemy_Count > initial_Boar_Count) {
@@ -121,6 +129,12 @@ public class EnemyManager : MonoBehaviour {
         StopCoroutine("CheckToSpawnEnemies");
     }
 
+    public void addCoin(int count)
+    {
+        score += count;
+        scoreText.text = score.ToString();
+        PlayerPrefs.SetInt("coinCount", score);
+    }
 }
 
 

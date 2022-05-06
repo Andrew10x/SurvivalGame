@@ -19,15 +19,15 @@ public class WeaponManager : MonoBehaviour {
             TurnOnSelectedWeapon(0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+        if (Input.GetKeyDown(KeyCode.Alpha2) && PlayerPrefs.GetInt("Revolver") != -1) {
             TurnOnSelectedWeapon(1);
         }
     
-        if (Input.GetKeyDown(KeyCode.Alpha3)) {
+        if (Input.GetKeyDown(KeyCode.Alpha3) && PlayerPrefs.GetInt("Shotgun") != -1) {
             TurnOnSelectedWeapon(2);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha4)) {
+        if (Input.GetKeyDown(KeyCode.Alpha4) && PlayerPrefs.GetInt("AsRiffle") != -1) {
             TurnOnSelectedWeapon(3);
         }
 

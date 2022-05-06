@@ -409,7 +409,7 @@ GameObject:
   - component: {fileID: 114378608325154776}
   - component: {fileID: 114643583927529820}
   m_Layer: 10
-  m_Name: Cannibal
+  m_Name: Cannibal 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,7 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  health: 100
+  health: 200
   is_Player: 0
   is_Boar: 0
   is_Cannibal: 1
@@ -1556,7 +1556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58d5b5edd29a5432c9dbe255eb97df60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 20
   radius: 1
   isAxe: 0
   layerMask:

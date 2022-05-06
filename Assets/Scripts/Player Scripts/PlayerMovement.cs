@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour {
 
     private State state;
+    private Context context;
     private Vector3 move_Direction;
 
     public float speed = 5f;
@@ -41,7 +42,8 @@ public class PlayerMovement : MonoBehaviour {
         vertical_Velocity -= gravity * Time.deltaTime;
 
         state = new Jump(jump_Force, vertical_Velocity);
-        state.doWork();
+        context = new Context(state);
+        context.Request();
 
         move_Direction.y = vertical_Velocity * Time.deltaTime;
 
@@ -49,7 +51,25 @@ public class PlayerMovement : MonoBehaviour {
 
 }
 
-abstract class State
+public class Context
+{
+    State state;
+
+    public Context(State state)
+    {
+        this.state = state;
+    }
+
+
+
+    public void Request()
+    {
+        state.doWork();
+    }
+}
+
+
+abstract public class State
 {
     public abstract void doWork();
 }
@@ -73,6 +93,7 @@ class Jump: State
         PlayerMovement.vertical_Velocity = vertical_Velocity;
     }
 }
+
 
 
 

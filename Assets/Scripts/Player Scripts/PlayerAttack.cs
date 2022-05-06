@@ -9,6 +9,12 @@ public class PlayerAttack : MonoBehaviour {
     private float nextTimeToFire;
     private float damage = 50f;
 
+    private MyWeapon wp = new Axe();
+    private MyWeapon wa = new Axe();
+    private MyWeapon wr = new Revolver();
+    private MyWeapon ws = new Shotgun();
+    private MyWeapon war = new AsRiffle();
+
     private Animator zoomCameraAnim;
     private GameObject crosshair;
     private Camera mainCam;
@@ -39,10 +45,8 @@ public class PlayerAttack : MonoBehaviour {
 
         // if we have assault riffle
         if(weapon_Manager.GetCurrentSelectedWeapon().fireType == WeaponFireType.MULTIPLE) {
-            if (st == 0)
-                damage = 10f;
-            else
-                damage = 5f;
+            wp = war;
+            damage = wp.getDamage();
 
             if (Input.GetMouseButton(0) && Time.time > nextTimeToFire) {
 
@@ -62,26 +66,20 @@ public class PlayerAttack : MonoBehaviour {
 
                 if(weapon_Manager.GetCurrentSelectedWeapon().tag == Tags.AXE_TAG) {
                     weapon_Manager.GetCurrentSelectedWeapon().ShootAnimation();
-                    if (50f - st > 30f)
-                        damage = 50f - st;
-                    else
-                        damage = 30f;
+                    wp = wa;
+                    damage = wp.getDamage();
                 }
                 else if(weapon_Manager.GetCurrentSelectedWeapon().tag == Tags.REVOLVER_TAG) {
-                    if (50f - st > 30f)
-                        damage = 50f - st;
-                    else
-                        damage = 30f;
+                    wp = wr;
+                    damage = wp.getDamage();
                 }
                 else if (weapon_Manager.GetCurrentSelectedWeapon().tag == Tags.SHOTGUN_TAG)
                 {
-                    if (100f - st > 40f)
-                        damage = 100f - st;
-                    else
-                        damage = 40f;
+                    wp = ws;
+                    damage = wp.getDamage();
 
                 }
-              
+                Debug.Log(damage);
 
                 if (weapon_Manager.GetCurrentSelectedWeapon().bulletType == WeaponBulletType.BULLET) {
 
