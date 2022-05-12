@@ -49,6 +49,7 @@ public class Weapon: MonoBehaviour
         }
         PlayerPrefs.SetInt(wName, weaponLevel + 1);
         PlayerPrefs.SetInt("coinCount", coins - mw.weaponCount[weaponLevel + 1]);
+        Debug.Log(wName + " " + weaponLevel);
         drawWeapon();
         Debug.Log(weaponLevel);
 
@@ -60,6 +61,7 @@ public class Weapon: MonoBehaviour
         int weaponLevel = PlayerPrefs.GetInt(wName);
         if (weaponLevel == -1)
         {
+            coinCont.SetActive(true);
             damageText.text = mw.weaponDamage[0].ToString();
             buyText.text = "Buy";
             countText.text = mw.weaponCount[0].ToString();

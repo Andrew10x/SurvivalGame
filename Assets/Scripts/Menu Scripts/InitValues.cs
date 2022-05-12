@@ -5,7 +5,7 @@ public class NewBehaviourScript : MonoBehaviour
 {
     void Start()
     {
-        if(!PlayerPrefs.HasKey("Axe"))
+       /* if(!PlayerPrefs.HasKey("Axe"))
         {
             PlayerPrefs.SetInt("Axe", 0);
         }
@@ -24,7 +24,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (!PlayerPrefs.HasKey("coinCount"))
         {
             PlayerPrefs.SetInt("coinCount", 0);
-        }
+        }*/
 
 /*
         PlayerPrefs.SetInt("Axe", 0);

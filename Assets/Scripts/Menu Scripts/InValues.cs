@@ -18,7 +18,7 @@ public class InValues : MonoBehaviour
         {
             PlayerPrefs.SetInt("Shotgun", -1);
         }
-        if (!PlayerPrefs.HasKey("Asriffle"))
+        if (!PlayerPrefs.HasKey("AsRiffle"))
         {
             PlayerPrefs.SetInt("AsRiffle", -1);
         }
